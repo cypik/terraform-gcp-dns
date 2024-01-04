@@ -1,5 +1,5 @@
 provider "google" {
-  project = "cypik-397319"
+  project = "local-concord-408802"
   region  = "asia-northeast1"
   zone    = "asia-northeast1-a"
 }
@@ -19,10 +19,11 @@ module "vpc" {
 ##### dns-forwarding-zone module call.
 #####==============================================================================
 module "dns_forwarding_zone" {
-  source                             = "../.."
+  source                             = "../../"
   type                               = "forwarding"
   name                               = "app-test"
   environment                        = "forwarding"
+  visibility                         = "private"
   domain                             = var.domain
   labels                             = var.labels
   private_visibility_config_networks = [module.vpc.self_link]

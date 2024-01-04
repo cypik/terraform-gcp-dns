@@ -1,5 +1,5 @@
 provider "google" {
-  project = "cypik-397319"
+  project = "local-concord-408802"
   region  = "asia-northeast1"
   zone    = "asia-northeast1-a"
 }
@@ -17,10 +17,11 @@ module "vpc" {
 ##### dns-public-zone module call.
 #####==============================================================================
 module "dns_public_zone" {
-  source                             = "../.."
+  source                             = "../../"
   type                               = "public"
   name                               = "app-test"
   environment                        = "public"
+  visibility                         = "public"
   domain                             = var.domain
   labels                             = var.labels
   private_visibility_config_networks = [module.vpc.self_link]
